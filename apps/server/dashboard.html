@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NabuLink | Devices</title><style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}body{background:#0d1524;color:#ebf3ff;margin:0;padding:26px;line-height:1.5}
+main{max-width:900px;margin:auto}h1{margin-bottom:4px;font-size:2rem}
+p,small{color:#aabfd6}.box{background:#162538;border:1px solid #324960;border-radius:15px;padding:18px;margin:16px 0}
+.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}input,button,textarea{font:inherit;padding:11px 13px;border-radius:9px;border:1px solid #597189;background:#0d1727;color:#f4fbff}
+input{min-width:180px;flex:1}button{background:#1674bd;cursor:pointer;border:0}button.warn{background:#9b293f}
+button:disabled{opacity:.5}code{color:#8cdbd1}#msg{white-space:pre-wrap;color:#b9e4ff}
+.device{border-top:1px solid #3b526c;margin-top:13px;padding-top:13px}strong{display:block}small{display:block}
+</style></head><body><main>
+<h1>NabuLink <span aria-label="lock">🔒</span></h1><p>Self-hosted device pairing · No inbound agent ports · Consent-first capabilities.</p>
+<section class="box"><h2>Administrator</h2>
+<p>Paste the server administrator token. It is kept only in this browser tab's memory.</p>
+<div class="row"><input type="password" id="token" placeholder="NBL_ADMIN_TOKEN" autocomplete="off"><button id="load">Load devices</button></div>
+</section>
+<section class="box"><h2>Approve a device</h2>
+<p>Run the NabuLink agent on your device, then enter the one-time code it prints.</p>
+<div class="row"><input id="code" placeholder="Pairing code" autocomplete="off"><button id="approve">Approve pairing</button></div>
+</section>
+<section class="box"><h2>Paired devices</h2><div id="devices">Authenticate to see devices.</div></section>
+<p id="msg" role="status"></p><small>Only enabled local device capabilities can be invoked. Never approve unknown pairing codes.</small>
+</main><script src="/dashboard.js"></script></body></html>

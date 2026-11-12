@@ -1,0 +1,35 @@
+services:
+  nabulink:
+    build: .
+    image: nabulink/server:dev
+    container_name: nabulink
+    restart: unless-stopped
+    environment:
+      NBL_HOST: "0.0.0.0"
+      NBL_PORT: "8787"
+      NBL_DATA_DIR: "/data"
+      NBL_ADMIN_TOKEN: "${NBL_ADMIN_TOKEN:?set NBL_ADMIN_TOKEN in .env}"
+      NBL_PUBLIC_ORIGIN: "https://${NBL_DOMAIN:?set NBL_DOMAIN in .env}"
+    volumes:
+      - nabulink_data:/data
+    networks:
+      - coolify
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=coolify
+      - 'traefik.http.routers.nabulink.rule=Host(`${NBL_DOMAIN}`)'
+      - traefik.http.routers.nabulink.entrypoints=https
+      - traefik.http.routers.nabulink.tls=true
+      - traefik.http.routers.nabulink.tls.certresolver=letsencrypt
+      - traefik.http.services.nabulink.loadbalancer.server.port=8787
+      - traefik.http.routers.nabulink.service=nabulink
+volumes:
+  nabulink_data:
+networks:
+  coolify:
+    external: true

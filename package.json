@@ -1,0 +1,25 @@
+{
+  "name": "nabulink",
+  "version": "0.1.0",
+  "description": "Self-hosted, consent-first device pairing and MCP actions",
+  "type": "module",
+  "bin": {
+    "nabulink-server": "./apps/server/server.mjs",
+    "nabulink-agent": "./apps/agent/agent.mjs",
+    "nabulink-mcp": "./apps/mcp/mcp.mjs"
+  },
+  "scripts": {
+    "server": "node apps/server/server.mjs",
+    "agent": "node apps/agent/agent.mjs",
+    "mcp": "node apps/mcp/mcp.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "engines": {"node": ">=22"},
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.0.0",
+    "ws": "^8.18.3",
+    "zod": "^4.0.0"
+  },
+  "license": "Apache-2.0",
+  "files": ["apps","scripts","README.md","LICENSE"]
+}

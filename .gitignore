@@ -1,0 +1,9 @@
+node_modules/
+.env
+data/
+.nabulink/
+.DS_Store
+*.log
+coverage/
+*.key
+*.pem
